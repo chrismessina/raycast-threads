@@ -18,7 +18,8 @@ macOS and Windows per the manifest. Requires the Raycast app and `ray` on PATH.
 | `npm run dev`                       | `ray develop` — long-lived watcher; run it in a real terminal, never background-and-kill it |
 | `npm run build`                     | `ray build -e dist` (also generates `raycast-env.d.ts`)                                     |
 | `npm run lint` / `npm run fix-lint` | `ray lint` (ESLint + Prettier)                                                              |
-| `npm run check`                     | runnable check for the post-resolution logic — hits the live site                           |
+| `npm test`                          | vitest — hermetic, no network                                                               |
+| `npm run test:live`                 | resolves the real posts in `live-posts.json` — needs network                                 |
 | `npm run publish`                   | publish to the Raycast Store                                                                |
 
 Tests are vitest, colocated as `src/**/*.test.ts`, matching the rest of the fleet. The live
@@ -84,7 +85,7 @@ resolves.
 > The one-pass index is load-bearing, not a micro-optimisation. Brace-matching forward from
 > each candidate rescans toward the end of a ~1 MB document once per candidate, so a caption
 > full of `{` made resolution quadratic — measured at 11s for 5,000 braces, versus 5ms now.
-> `npm run check` asserts this stays under 1.5s.
+> `npm test` asserts this stays under 1.5s.
 
 Two more things the parser must keep doing, each covered by a fixture check:
 
@@ -163,7 +164,7 @@ to a Threads post", which sends you looking in the wrong place.
 **What it is NOT, measured rather than assumed** (2026-09-08, post `DdCaCPID3Fe`):
 
 - **Not a `/share/` bug.** Other share links resolve fine, including to a text-only post and
-  to a video post. Both are live cases in `npm run check`.
+  to a video post. Both are live cases in `npm test`.
 - **Not per-account.** Sibling posts from the same public account resolve fine anonymously.
 - **Not the canonical-vs-share distinction.** The canonical `/@user/post/<code>` URL bounces
   identically.
@@ -211,8 +212,8 @@ curl -s -A "$UA" -L "https://www.threads.com/@muse/post/DdCYkFvlDvi" -o /tmp/pos
 grep -c '"video_versions"' /tmp/post.html   # 0 means the payload shape moved
 ```
 
-Then run `npm run check`, which asserts against two real posts (a single video and a
-two-item carousel) and two rejection cases.
+Then run `npm test` for the parser fixtures, and `npm run test:live` to resolve the real
+posts in `live-posts.json`.
 
 ## Conventions
 

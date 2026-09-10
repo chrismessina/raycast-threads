@@ -229,7 +229,7 @@
     {
       "name": "download-thread-media",
       "title": "Download Threads Media",
-      "description": "Download images and videos from a Threads post URL",
+      "description": "Download images, videos, and voice posts from a Threads post URL",
       "mode": "no-view",
       "arguments": [
         {
