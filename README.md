@@ -9,7 +9,7 @@
 [![Follow @chrismessina](https://img.shields.io/github/followers/chrismessina?label=Follow%20chrismessina&style=social)](https://github.com/chrismessina)
 [![Stars](https://img.shields.io/github/stars/chrismessina/raycast-threads?style=social)](https://github.com/chrismessina/raycast-threads/stargazers)
 
-**Post to Threads, jump straight to any feed, and download media from a post — without leaving Raycast.**
+**Post to Threads, jump straight to any feed, download media from a post, check your analytics, and draw giveaway winners — without leaving Raycast.**
 
 [Features](#features) • [Requirements](#requirements) • [Quick Start](#quick-start) • [Usage](#usage) • [Development](#development)
 
@@ -24,6 +24,8 @@
 - **Files are named correctly** — the extension reads the format the server actually sent rather than trusting the URL, so an image that is really WebP does not land as a broken `.jpg`.
 - **Nothing is ever overwritten** — a download whose name is already taken saves alongside as `name (1).ext`, and a half-finished download can never be mistaken for a complete one.
 - **Optional format conversion** — keep the original, or convert images to JPEG or PNG on the way in.
+- **Analytics** — raw account and post metrics for the last 7, 14, 30, or 90 days, plus a menu bar item showing the metric of your choice.
+- **Giveaways** — draw winners from the replies to one of your posts, filtered by keywords, mentions, reply time, or excluded accounts.
 - **Post and navigate** — compose a post, follow an account, open a profile, search, and jump to any of your feeds or activity tabs.
 
 ---
@@ -32,6 +34,7 @@
 
 - [Raycast](https://www.raycast.com/) installed
 - macOS, for the optional **Image Format** conversion only. Everything else works on macOS and Windows alike.
+- A **Threads Access Token**, for **Analytics**, **Analytics Menu Bar**, and **Giveaway** only. It needs the `threads_basic`, `threads_manage_insights`, and `threads_read_replies` permissions. Follow the [token guide](https://threads-analytics.app/en/token-guide), then paste the token into **Threads Access Token** in the extension preferences. Tokens expire after 60 days.
 
 ---
 
@@ -62,6 +65,9 @@
 | My Feeds | `no-view` | Open For You, Following, Liked, or Saved |
 | Activity | `no-view` | Open any activity tab — replies, mentions, quotes, reposts, and more |
 | Insights | `no-view` | View account insights over 7, 14, 30, or 90 days |
+| Analytics | `view` | Raw account and post metrics from the Threads API |
+| Analytics Menu Bar | `menu-bar` | A Threads metric in the menu bar, refreshed every 30 minutes |
+| Giveaway | `view` | Draw winners from the replies to one of your posts |
 
 ### Actions
 
@@ -75,12 +81,16 @@
 
 | Preference | Values | Default |
 | --- | --- | --- |
+| Threads Access Token | a token | — |
 | Debug Logging | on / off | off |
+| Strict Redaction | on / off | off |
 | Media Download Path | a folder | `~/Downloads` |
 | Image Format | Original / JPEG / PNG | Original |
 
 **Media Download Path** and **Image Format** are preferences of the *Download Threads Media*
-command — expand it in the extension's settings to find them.
+command — expand it in the extension's settings to find them. **Analytics Menu Bar** has its own
+**Menu Bar Title** (follower count by default, or views, likes, replies, your latest post, or icon
+only) and **Period** (last 7 days by default).
 
 ---
 
