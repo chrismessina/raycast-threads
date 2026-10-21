@@ -9,7 +9,7 @@
 [![Follow @chrismessina](https://img.shields.io/github/followers/chrismessina?label=Follow%20chrismessina&style=social)](https://github.com/chrismessina)
 [![Stars](https://img.shields.io/github/stars/chrismessina/raycast-threads?style=social)](https://github.com/chrismessina/raycast-threads/stargazers)
 
-**Post to Threads, jump straight to any feed, download media from a post, check your analytics, and draw giveaway winners — without leaving Raycast.**
+**Post to Threads, jump straight to any feed, download media from a post, check your analytics, and draw giveaway winners, all from Raycast.**
 
 [Features](#features) • [Requirements](#requirements) • [Quick Start](#quick-start) • [Usage](#usage) • [Development](#development)
 
@@ -19,14 +19,14 @@
 
 ## Features
 
-- **Download media from any post** — images, videos, and voice posts, saved straight to your Downloads folder. Carousels download every item.
-- **Paste any Threads link** — a canonical post URL, one with tracking parameters, or a `threads.com/share/…` short link. They all resolve.
+- **Download media from a public post** — images, videos, and voice posts, saved straight to your Downloads folder. Carousels download every item.
+- **Paste a post link in any of its forms** — a canonical post URL, one with tracking parameters, or a `threads.com/share/…` short link. A post Threads won't show to a signed-out visitor can't be downloaded.
 - **Files are named correctly** — the extension reads the format the server actually sent rather than trusting the URL, so an image that is really WebP does not land as a broken `.jpg`.
-- **Nothing is ever overwritten** — a download whose name is already taken saves alongside as `name (1).ext`, and a half-finished download can never be mistaken for a complete one.
+- **Nothing is ever overwritten** — a download whose name is already taken saves alongside as `name (1).ext`, and a download's content is written to a `.part` file that takes its real name only once it finishes.
 - **Optional format conversion** — keep the original, or convert images to JPEG or PNG on the way in.
-- **Analytics** — raw account and post metrics for the last 7, 14, 30, or 90 days, plus a menu bar item showing the metric of your choice.
+- **Analytics** — raw account metrics for the last 7, 14, 30, or 90 days, and lifetime totals for your posts from that period, plus a menu bar item showing the metric of your choice.
 - **Giveaways** — draw winners from the replies to one of your posts, filtered by keywords, mentions, reply time, or excluded accounts.
-- **Post and navigate** — compose a post, follow an account, open a profile, search, and jump to any of your feeds or activity tabs.
+- **Post and navigate** — compose a post or follow an account and finish in Threads, or open a profile, a search, or any of your feeds or activity tabs.
 
 ---
 
@@ -75,7 +75,7 @@
 | --- | --- | --- |
 | Show in Finder | `⌘ O` | Reveal a completed download |
 | Copy Path | `⌘ ⇧ C` | Copy the saved file's path |
-| Copy Error | `⌘ ⇧ C` | Copy the details of a failure, for a bug report |
+| Copy Error | — | Copy the details of a failure, for a bug report (`⌘ ⇧ C` in the Analytics and Giveaway error views) |
 
 ### Preferences
 
@@ -101,11 +101,13 @@ only) and **Period** (last 7 days by default).
 ```
 raycast-threads/
 ├── src/
-│   ├── download-thread-media.tsx   # the one command that does real work
+│   ├── download-thread-media.tsx   # downloads a post's media
+│   ├── analytics*.tsx, giveaway.tsx  # Threads API commands (need a token)
 │   ├── new-thread.tsx              # compose form
 │   ├── *.tsx                       # URL-builder commands
 │   └── lib/
 │       ├── threads-post.ts         # resolves a link to its media
+│       ├── threads-api.ts          # Threads Graph API client
 │       ├── media-files.ts          # paths, conversion, extensions
 │       ├── download-media.ts       # streams a download to disk
 │       └── *.test.ts               # vitest, colocated
@@ -147,7 +149,7 @@ See [AGENTS.md](AGENTS.md) for how media resolution works and why it is shaped t
 | --- | --- |
 | `@raycast/api` | Raycast extension primitives |
 | `@chrismessina/raycast-kit` | Failure toasts with a Copy Error action, byte formatting, plurals |
-| `@chrismessina/raycast-logger` | Structured logging behind the Debug Logging preference |
+| `@chrismessina/raycast-logger` | Structured logging; Debug Logging adds detail, errors always log |
 
 ---
 
