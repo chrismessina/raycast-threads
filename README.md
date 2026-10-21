@@ -5,7 +5,7 @@
 # Threads
 
 [![Raycast Store](https://img.shields.io/badge/Raycast-Store-FF6363?style=flat-square&logo=raycast&logoColor=white)](https://www.raycast.com/chrismessina/threads)
-[![Licence MIT](https://img.shields.io/badge/Licence-MIT-22C55E?style=flat-square)](LICENSE)
+[![License MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat-square)](LICENSE)
 [![Follow @chrismessina](https://img.shields.io/github/followers/chrismessina?label=Follow%20chrismessina&style=social)](https://github.com/chrismessina)
 [![Stars](https://img.shields.io/github/stars/chrismessina/raycast-threads?style=social)](https://github.com/chrismessina/raycast-threads/stargazers)
 
@@ -40,6 +40,10 @@
 1. Copy a Threads post link — from the share sheet, the address bar, or a `/share/` link someone sent you.
 2. Open Raycast and search for **"Download Threads Media"**.
 3. Paste the link. The media lands in your Downloads folder, or wherever you point **Media Download Path**.
+
+> **If "Finding Media" is slow:** Threads sometimes takes 10–30 seconds to answer a request
+> it hasn't seen from you recently. Open the post in a browser where you're signed in to
+> Threads, Instagram, or Facebook, then run the download. It is usually much faster after that.
 
 ---
 
