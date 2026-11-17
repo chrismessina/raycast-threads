@@ -1,6 +1,6 @@
 {
-  "upstream_commit": "9e38db6ccc6bbae34b04670701018f4bfe90342f",
-  "synced_at": "2026-10-22T15:50:39Z",
+  "upstream_commit": "c4e0f79975a011e16032382f2d1263f712f8b43c",
+  "synced_at": "2026-11-17T18:42:39Z",
   "files": {
     ".gitignore": "4675b1d1e80fcf59703b237873bd9cb1362ce473",
     ".prettierrc": "fc0f5030683fa6196d08943646300755fce2f207",
@@ -18,7 +18,7 @@
     "metadata/threads-5.png": "03492cc8ec216a00aa3b2d1c04546d516b7fec2b",
     "metadata/threads-6.png": "a625cdb9d6aab1eb1885d420e074176f6b1c80d4",
     "package-lock.json": "116db46fddbfa15574eadaf90ddd2b554fc6c06c",
-    "package.json": "9c2e220c05bfcf51bdf82aad635adc0338bf0bad",
+    "package.json": "1154ba7b0d6a5abbdd934dc039ba6983e12765ac",
     "src/activity.tsx": "dc4126d7acd80da491cdab97c849560fd876f552",
     "src/analytics-menu-bar.tsx": "78497da06dbe73ae95e7a013af69db06016b6826",
     "src/analytics.tsx": "8e733e416459ac89764fbfb4894011611c86fa56",
